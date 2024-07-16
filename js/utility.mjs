@@ -58,16 +58,35 @@ export function setClick(selector, callback) {
 }
 
 export async function getData() {
-    const api = "https://rapidapi.com/chihebnabil/api/grocery-pricing-api/playground/apiendpoint_0cd5f72c-4901-43b2-b352-049ad2ba08d5"
-
-    try {
-        const response = await fetch(api, { mode: 'no-cors' });
-        if (!response.ok) {
-            throw { name: "servicesError"};
+    const url = 'https://store-groceries.p.rapidapi.com/groceries/search/%7Bgrocery%7D';
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '1c7190741emsh27b4de49c30febap1c4c27jsnc4c4604109ee',
+            'x-rapidapi-host': 'grocery-pricing-api.p.rapidapi.com'
         }
-        const json = await response.json();
-        console.log(json[0]);
-    } catch (error) {
-        console.error(error.message);
-    }    
+    };
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
+
+
+
+    // const api = "https://rapidapi.com/chihebnabil/api/grocery-pricing-api/playground/apiendpoint_0cd5f72c-4901-43b2-b352-049ad2ba08d5"
+    // const api = "https://grocery-pricing-api.p.rapidapi.com/searchGrocery?keyword=sweet%20potato&perPage=10&page=1"
+    // try {
+    //     const response = await fetch(api, { mode: 'no-cors' });
+    //     if (!response.ok) {
+    //         throw { name: "servicesError"};
+    //     }
+    //     const json = await response.json();
+    //     console.log(json[0][0]);
+    // } catch (error) {
+    //     console.error(error.message);
+    // }    
 }
