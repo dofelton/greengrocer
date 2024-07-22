@@ -1,6 +1,8 @@
-const api = "https://rapidapi.com/chihebnabil/api/grocery-pricing-api/playground/apiendpoint_0cd5f72c-4901-43b2-b352-049ad2ba08d5"
+import { setLocalStorage } from "./utility.mjs";
 
-async function convertToJson(res) {
+const api = ""
+
+export async function convertToJson(res) {
     const data = await res.json();
     if (res.ok) {
         return data;
@@ -11,24 +13,32 @@ async function convertToJson(res) {
 
 export default class Data {
     constructor(category) {
-        this.category = category;
-        this.path = `../json/${this.category}.json`;
+        // this.category = category;
+        // this.path = `../json/${this.category}.json`;
     }
     async getData() {
-        try {
-            const response = await fetch(api);
-            if (!response.ok) {
-                throw { name: "servicesError", message: data };
-            }
-            const json = await response.json();
-            console.log(json);
-        } catch (error) {
-            console.error(error.message);
-        }    
-    }
+        const url = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=Rb8YTA4fLvaCu4cYVkHrz2Sh4pGISxgMd9YrXlrd&query=squash';
+        let result;
+            try {
+                const response = await fetch(url);
+                result = await convertToJson(response);
+                console.log(result[1]);
+            } catch (error) {
+                console.error(error);   
+            }     
+            return result;
+        }
     
     async findProductById(id) {
-        const response = await fetch(api + `product/${id}`);
-
+        const url = `https://api.nal.usda.gov/fdc/v1/food/${productId}?api_key=Rb8YTA4fLvaCu4cYVkHrz2Sh4pGISxgMd9YrXlrd`;
+        try {
+            // const productID;
+            const response = await fetch(url);
+            const result = await convertToJson(response);
+            console.log(result);
+        } catch (error) {
+            console.error(error);   
+        } 
     }
-}
+
+} 

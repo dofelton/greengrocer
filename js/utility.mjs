@@ -1,3 +1,4 @@
+import { convertToJson } from "./data.mjs"
 export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // get data from local storage
@@ -13,12 +14,17 @@ export function setLocalStorage(key, data) {
 // get parameters
 export function getParam(param) {
     const queryString = window.location.search;
+//     console.log(`queryString: ${queryString}`)
     const urlParams = new URLSearchParams(queryString);
+//     console.log(`urlParams: ${urlParams}`)
     const product = urlParams.get(param);
+//     console.log(`in getParam: ${product}`)
     return product;
 }
 
-export function renderList (templateFn, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = false) {
+    list = list.foods;
+    console.log("list", list);
     const htmlStrings = list.map(templateFn);
     if(clear) {
         parentElement.innerHTML = "";
@@ -57,36 +63,3 @@ export function setClick(selector, callback) {
     qs(selector).addEventListener("click", callback);
 }
 
-export async function getData() {
-    const url = 'https://store-groceries.p.rapidapi.com/groceries/search/%7Bgrocery%7D';
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': '1c7190741emsh27b4de49c30febap1c4c27jsnc4c4604109ee',
-            'x-rapidapi-host': 'grocery-pricing-api.p.rapidapi.com'
-        }
-    };
-
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
-}
-
-
-
-    // const api = "https://rapidapi.com/chihebnabil/api/grocery-pricing-api/playground/apiendpoint_0cd5f72c-4901-43b2-b352-049ad2ba08d5"
-    // const api = "https://grocery-pricing-api.p.rapidapi.com/searchGrocery?keyword=sweet%20potato&perPage=10&page=1"
-    // try {
-    //     const response = await fetch(api, { mode: 'no-cors' });
-    //     if (!response.ok) {
-    //         throw { name: "servicesError"};
-    //     }
-    //     const json = await response.json();
-    //     console.log(json[0][0]);
-    // } catch (error) {
-    //     console.error(error.message);
-    // }    
-}
