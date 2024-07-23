@@ -27,4 +27,12 @@ export default class ProductDetails {
             productDetailsTemplate(this.product)
         );
     }
+    addToList() {
+        let listContents = getLocalStorage("so-list");
+        if (!listContents) {
+            listContents = [];
+        }
+        listContents.push(this.product);
+        setLocalStorage("so-list", listContents);
+    }
 }

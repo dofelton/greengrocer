@@ -32,7 +32,6 @@ body {
 
 .order {
     display: flex;
-
 }
 
 .order a {
@@ -59,6 +58,7 @@ body {
     margin-right: auto;
     align-items: center;
 }
+
 .products img {
     width: 100%;
     height: auto;
@@ -70,6 +70,49 @@ body {
     background: white;
 }
 
+.show.active {
+    transform: rotateY(0deg);
+    z-index: 1;
+}
+
+.show.next {
+    transform: rotateY(-180deg);
+    z-index: 2;
+}
+
+.show.prev {
+    transform: rotateY(180deg);
+    z-index: 2;
+}
+
 footer {
     background: white;
+}
+
+#products h2 {
+    text-align: center;
+}
+.product-list {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.product-list li {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.product-card {
+    background: var(--accent);
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-bottom: 5px;
+    text-align: center;
+    color: black;
+}
+
+.product-card:hover {
+    color: green;
+    cursor: pointer;
 }
