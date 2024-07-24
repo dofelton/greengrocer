@@ -19,7 +19,7 @@ export default class ProductList {
         const list = await this.dataSource.getData();
         const localStorage = getLocalStorage("so-list");
         if (!localStorage) {
-            setLocalStorage("so-list", []);
+            // setLocalStorage("so-list", []);
             console.log("local storage set to ", getLocalStorage("so-list"))
         }
 

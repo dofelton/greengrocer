@@ -19,7 +19,7 @@ export default class List {
         if (list) {
         this.renderListContents(list);
         } else {
-            setLocalStorage("so-list", []);
+            // setLocalStorage("so-list", []);
             const htmlItems = `<h3>The list is empty.</h3>`
             document.querySelector(".product-list").innerHTML = htmlItems;
         }
