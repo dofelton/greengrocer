@@ -23,11 +23,34 @@ export default class ProductList {
             console.log("local storage set to ", getLocalStorage("so-list"))
         }
 
-        this.renderList(list);
+    this.renderList(list);
 
-        document
-            .getElementById("addToList")
-            .addEventListener("click", this.addToList(this));
+    document.addEventListener('DOMContentLoaded', function() {
+        let addToList = document.querySelectorAll('.product-card');
+
+        addToList.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                let clickedUrl = link.href;
+                let clickedText = link.innerText;
+                setLocalStorage(clickedText)
+                console.log('Link clicked:', clickedText);
+                window.location.href= clickedUrl
+            });
+
+        });
+    });
+    // 
+    // document
+    //     .getElementById("addToList")
+    //     addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         let clickedUrl = link.href;
+    //         let clickedText = link.innerText;
+    //         setLocalStorage(clickedText)
+    //         console.log('Link clicked:', clickedText);
+    //         window.location.href= clickedUrl
+    //     });
     }
     renderList(list) {
         renderListWithTemplate(productCard, this.listElement, list)

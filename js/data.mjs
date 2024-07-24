@@ -22,7 +22,6 @@ export default class Data {
             try {
                 const response = await fetch(url);
                 result = await convertToJson(response);
-                console.log(result[1]);
             } catch (error) {
                 console.error(error);   
             }     

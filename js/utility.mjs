@@ -8,7 +8,14 @@ export function getLocalStorage(key, data) {
 
 // save data to local storage
 export function setLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
+    const existingItems = JSON.parse(localStorage.getItem(key)) || [];
+    console.log('existing: ', existingItems);
+    // existingItems.items = existingItems.items || [];
+    existingItems.push(data);
+    console.log('newexisting: ', existingItems);
+    localStorage.setItem(key, JSON.stringify(existingItems));
+
+
 }
 
 // get parameters
@@ -24,7 +31,6 @@ export function getParam(param) {
 
 export function renderListWithTemplate (templateFn, parentElement, list, position = "afterbegin", clear = false) {
     list = list.foods;
-    console.log("list", list);
     const htmlStrings = list.map(templateFn);
     if(clear) {
         parentElement.innerHTML = "";

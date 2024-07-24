@@ -1,10 +1,10 @@
-import { getLocalStorage, setLocalStorage } from "./utility.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utility.mjs";
 
-function listItemTemplate(product) {
+export function listItemTemplate(product) {
     return `<li class="product-card">
-    <h3>${product.description}</h3>
-    <p>Additional information: ${product.additionalDescriptions}</p>
-    <p>Category: ${product.foodCategory}</p>
+    <h3>${product.item}</h3>
+    <p>Additional information: ${product.details}</p>
+    <p>Quantity: ${product.quantity}</p>
     </li>`;
 }
 
@@ -14,7 +14,8 @@ export default class List {
         this.parentSelector = parentSelector;
     }
     async init() {
-        let list = getLocalStorage(this.key);
+        let list = (getLocalStorage(this.key));
+        console.log('list', list)
         if (list) {
         this.renderListContents(list);
         } else {
@@ -22,20 +23,20 @@ export default class List {
             const htmlItems = `<h3>The list is empty.</h3>`
             document.querySelector(".product-list").innerHTML = htmlItems;
         }
-
     }
-    
-    renderListContents() {
-        let listItems = getLocalStorage(this.key);
-        console.log(`listItems: ${listItems}`)
-        if (listItems.length > 0) {
-            const htmlItems = listItems.map((item) => listItemTemplate(item));
+    renderListContents(list) {
+        // renderListWithTemplate(listItemTemplate, this.parentSelector, list)
+        const listLength = (getLocalStorage(this.key)).length;
+        let listItems = (getLocalStorage(this.key));
+        if (listLength) {
+            const htmlItems = listItems.map((item) => listItemTemplate(JSON.parse(item)));
             document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
         } else {
             const htmlItems = `<h3>The list is empty.</h3>`
             document.querySelector(".product-list").innerHTML = htmlItems;
         }
     };
+    
     deleteFromList(item) {
         var onList = getLocalStorage("so-list");
         let index = 0;

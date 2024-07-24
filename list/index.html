@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Grocer | Shopping list</title>
     <link rel="stylesheet" href="/css/stylesheet.css">
-    <script src="../js/list.js" type="module"></script>
 </head>
 <body>
    <header id="header"></header>
    <main>
+    <h2 class="list">Shopping List</h2>
     <section class="list">
-        <h2>Shopping List</h2>
-        <ul class="product-list"></ul>
+        <form class="listForm">
+            <label>Item: </label>
+            <input type="text" id="item" name="item" required>
+            <label>details: </label>
+            <input type="text" id="details" name="details" required>
+            <label>Quantity: </label>
+            <input type="number" id="quantity" name="quantity" required><br>
+            <button type="submit">Add to list</button>
+        </form>
+        <div>
+            <ul class="product-list"></ul>
+        </div>
     </section>
    </main>
    <footer id="footer"></footer>
+   <script src="../js/list.js" type="module"></script>
 </body>
 </html>

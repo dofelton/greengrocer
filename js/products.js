@@ -6,8 +6,23 @@ loadHeaderandFooter();
 
 const category = getParam("category");
 const dataSource = new Data();
-console.log(dataSource);
 const element = document.querySelector(".product-list");
 const listing = new Products(category, dataSource, element);
+
+document.addEventListener('DOMContentLoaded', function() {
+    let addToList = document.querySelectorAll('.product-card');
+
+    addToList.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            let clickedUrl = link.href;
+            let clickedText = link.innerText;
+            setLocalStorage(clickedText)
+            console.log('Link clicked:', clickedText);
+            window.location.href= clickedUrl
+        });
+
+    });
+});
 
 listing.init();
