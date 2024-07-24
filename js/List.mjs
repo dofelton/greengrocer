@@ -2,8 +2,8 @@ import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./util
 
 export function listItemTemplate(product) {
     return `<li class="product-card">
-    <h3>${product.item}</h3>
-    <p>Additional information: ${product.details}</p>
+    <h3>Item: ${product.item}</h3>
+    <p>Details: ${product.details}</p>
     <p>Quantity: ${product.quantity}</p>
     </li>`;
 }

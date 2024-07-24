@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             let clickedUrl = link.href;
             let clickedText = link.innerText;
-            setLocalStorage(clickedText)
+            const dataJson = JSON.stringify(clickedText);
+            setLocalStorage('so-list', dataJson)
             console.log('Link clicked:', clickedText);
             window.location.href= clickedUrl
         });
