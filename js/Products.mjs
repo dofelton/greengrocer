@@ -2,11 +2,10 @@ import { renderListWithTemplate, getLocalStorage, setLocalStorage } from "./util
 
 export function productCard(product) {
     return `<li class="product-card" id="addToList">
-    <a href="list.html" class="product-"anchor">
     <h3>${product.description}</h3>
     <p>${product.additionalDescriptions}</p>
     <p>${product.foodCategory}</p>
-    </li></a>`;
+    </li>`;
 }
 
 export default class ProductList {
