@@ -10,11 +10,10 @@ const element = document.querySelector(".product-list");
 const listing = new Products(category, dataSource, element);
 
 document.addEventListener('DOMContentLoaded', function() {
-    let addToList = document.querySelectorAll('.product-card');
-
+    let addToList = document.querySelectorAll('.product-anchor');
     addToList.forEach(function(link) {
         link.addEventListener('click', function(event) {
-            event.preventDefault();
+            // event.preventDefault();
             let clickedUrl = link.href;
             let clickedText = link.innerText;
             const dataJson = JSON.stringify(clickedText);
