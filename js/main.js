@@ -1,5 +1,5 @@
-import { loadHeaderandFooter } from "./js/utility.mjs";
-import { getLocalStorage } from "./js/utility.mjs";
+import { loadHeaderandFooter } from "./utility.mjs";
+import { getLocalStorage } from "./utility.mjs";
 
 loadHeaderandFooter();
 
